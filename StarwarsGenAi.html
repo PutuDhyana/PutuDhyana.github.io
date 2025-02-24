@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wars: The Generative Force</title>
+    <style>
+        @font-face {
+            font-family: 'StarJedi';
+            src: url('./Starjedi.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('./Minecraft.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+        }
+        .background-glow {
+            position: absolute;
+            width: 960px;
+            height: 540px;
+            border-radius: 10px;
+            box-shadow: -150px 0px 150px rgba(0, 0, 255, 0.6), 150px 0px 150px rgba(255, 0, 0, 0.6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .game-video {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            display: block;
+            z-index: 2;
+        }
+        .title {
+            position: absolute;
+            top: 1%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'StarJedi', sans-serif;
+            font-size: 70px;
+            color: white;
+            text-shadow: 3px 3px 5px black;
+            z-index: 3;
+        }
+        .subtitle {
+            position: absolute;
+            top: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'StarJedi', sans-serif;
+            font-size: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+            z-index: 3;
+        }
+        .play-text {
+            position: absolute;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Minecraft', sans-serif;
+            font-size: 40px;
+            color: limegreen;
+            text-shadow: 2px 2px 5px black;
+            animation: blink 1s infinite;
+            cursor: pointer;
+            z-index: 3;
+        }
+        .cover-image {
+            position: absolute;
+            top: 60%;
+            left: 52%;
+            transform: translate(-50%, -60%);
+            width: 1200px; /* Adjust size as needed */
+            height: auto;
+            z-index: 3;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-glow"></div>
+        <video class="game-video" autoplay loop muted>
+            <source src="animated-bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="title">Ai WARS:</div>
+        <div class="subtitle">The Generative Force</div>
+        <img src="./startgame-dhyana.png" class="cover-image" alt="Cover Image">
+        <div class="play-text" onclick="startGame()">Press Here to Play</div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="darth-vader.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+
+        function startGame() {
+            let audio = document.getElementById("bgMusic");
+
+            // Store the current time before navigating
+            localStorage.setItem("musicTime", audio.currentTime);
+            
+            audio.play().then(() => {
+                setTimeout(() => {
+                    window.location.href = 'page2.html';
+                }, 500);
+            }).catch(error => console.log("Audio play failed:", error));
+        }
+    </script>
+</body>
+</html>
