@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wars: The Generative Force</title>
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('./Minecraft.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+        }
+        .background-glow {
+            position: absolute;
+            width: 960px;
+            height: 540px;
+            border-radius: 10px;
+            box-shadow: -150px 0px 150px rgba(0, 0, 255, 0.6), 150px 0px 150px rgba(255, 0, 0, 0.6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+            width: 960px;
+            height: 540px;
+            transition: opacity 2s ease-in-out;
+            opacity: 0; /* Start hidden for fade-in effect */
+        }
+        .game-video {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            display: block;
+            z-index: 2;
+            transition: opacity 2s ease-out; /* Slower fade-out */
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="background-glow"></div>
+        <video class="game-video" id="gameVideo" autoplay muted>
+            <source src="./animated-bg_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <audio id="bgMusic" loop>
+            <source src="darth-vader.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <script>
+          let audio = document.getElementById("bgMusic");
+
+// Get stored music time and set it
+let savedTime = localStorage.getItem("musicTime");
+if (savedTime) {
+    audio.currentTime = parseFloat(savedTime);
+}
+
+audio.play().catch(error => console.log("Audio play failed:", error));
+        document.getElementById('container').style.opacity = '1'; // Fade-in effect on load
+
+        document.getElementById('gameVideo').addEventListener('ended', function() {
+            let container = document.getElementById('container');
+            this.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = 'yoda.html';
+            }, 2000); // Slower fade-out effect
+        });
+    </script>
+</body>
+</html>

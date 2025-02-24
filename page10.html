@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wars: The Generative Force</title>
+    <style>
+        @font-face {
+            font-family: 'PressStart2P';
+            src: url('./PressStart2P.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+        }
+        .background-glow {
+            position: absolute;
+            width: 960px;
+            height: 540px;
+            border-radius: 10px;
+            box-shadow: -150px 0px 150px rgba(0, 0, 255, 0.6), 150px 0px 150px rgba(255, 0, 0, 0.6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+            width: 960px;
+            height: 540px;
+        }
+        .game-image {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            display: block;
+            z-index: 2;
+        }
+        .text {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #2AAB1F;
+            font-family: 'PressStart2P', sans-serif;
+            font-size: 12.5px;
+            white-space: nowrap;
+            text-align: center;
+            line-height: 1.8;
+            z-index: 3;
+        }
+        .next-button {
+            position: absolute;
+            bottom: 24px;
+            right: 33px;
+            background: none;
+            border: none;
+            color: #2AAB1F;
+            font-family: 'PressStart2P', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 3;
+            pointer-events: none;
+        }
+        .pulse {
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-glow"></div>
+        <img class="game-image" id="gameImage" src="ok-this-yoda.png" alt="Yoda">
+        <div class="text" id="text"></div>
+        <button class="next-button" id="nextButton">NEXT >></button>
+    </div>
+    <script>
+        function typeText(text, element, callback) {
+            let index = 0;
+            function type() {
+                if (index < text.length) {
+                    if (text.charAt(index) === '|') {
+                        element.innerHTML += '<br>'; // Insert a line break
+                    } else {
+                        element.innerHTML += text.charAt(index);
+                    }
+                    index++;
+                    setTimeout(type, 75);
+                } else {
+                    setTimeout(callback, 500);
+                }
+            }
+            type();
+        }
+
+        setTimeout(() => {
+            typeText("Pick up all the broken spaceship parts | and answer some questions on Gen AI", document.getElementById('text'), function() {
+                let nextButton = document.getElementById('nextButton');
+                nextButton.style.opacity = '1';
+                nextButton.style.pointerEvents = 'auto';
+                nextButton.classList.add('pulse');
+            });
+        }, 1000);
+        // Redirect to page4.html when the button is clicked
+        document.getElementById('nextButton').addEventListener('click', function() {
+            window.location.href = "page12.html";
+        });
+    </script>
+</body>
+</html>
